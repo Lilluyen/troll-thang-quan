@@ -14,7 +14,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* overflow: hidden; */
 
         height: 100vh;
       }
@@ -22,8 +21,24 @@
         text-align: center;
       }
 
+      .btn-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+        position: absolute;
+        top: 60%;
+      }
+
       button {
         transition: 0.25s;
+        width: 90px;
+        text-align: center;
+      }
+
+      button:hover {
+        cursor: pointer;
+        transform: scale(1.05);
       }
 
       #yes-btn {
@@ -31,26 +46,41 @@
 
         position: fixed;
         top: 60%;
-        left: 35%;
+        left: 39%;
         background-color: pink;
         border: none;
         border-radius: 20px;
-        padding: 10px 40px;
+        padding: 10px 0;
       }
 
       #no-btn {
         position: fixed;
         top: 60%;
-        left: 55%;
+        right: 39%;
         background-color: pink;
         border: none;
         border-radius: 20px;
-        padding: 10px 40px;
+        padding: 10px 0;
       }
 
-      button:hover {
-        cursor: pointer;
-        transform: scale(1.05);
+      @media (max-width: 768px) {
+        #yes-btn {
+          left: 20%;
+        }
+
+        #no-btn {
+          right: 20%;
+        }
+      }
+
+      @media (max-width: 306px) {
+        #yes-btn {
+          left: 10%;
+        }
+
+        #no-btn {
+          right: 10%;
+        }
       }
     </style>
   </head>
@@ -58,8 +88,10 @@
     <div class="container">
       <h2 id="title">Quân Có Đẹp Trai Không ?</h2>
     </div>
-    <button id="yes-btn">Có</button>
-    <button id="no-btn">Không</button>
+    <div class="btn-group">
+      <button id="yes-btn">Có</button>
+      <button id="no-btn">Không</button>
+    </div>
 
     <script>
       const yes = document.getElementById("yes-btn");
@@ -89,7 +121,7 @@
         again.style.backgroundColor = "pink";
         again.style.border = "none";
         again.style.borderRadius = "20px";
-        again.style.padding = "10px 40px";
+        again.style.padding = "10px 0";
         again.innerText = "Chọn Lại";
         again.id = "again-btn";
 
