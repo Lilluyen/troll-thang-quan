@@ -97,7 +97,7 @@
       const yes = document.getElementById("yes-btn");
       const no = document.getElementById("no-btn");
       const title = document.getElementById("title");
-      yes.onmouseenter = function () {
+      yes.onpointerenter = function () {
         const rect = yes.getBoundingClientRect();
         console.log(rect);
         let x = Math.random() * (window.innerWidth - rect.width);
@@ -150,8 +150,8 @@
         again.onclick = function () {
           again.remove();
           yes.style.display = "block";
-          yes.style.top = "60%";
-          yes.style.left = "35%";
+          yes.style.top = "";
+          yes.style.left = "";
           no.style.display = "block";
           title.innerText = "Quân Có Đẹp Trai Không ?";
         };
