@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <title>ĐBRR</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* overflow: hidden; */
+
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+      }
+
+      button {
+        transition: 0.25s;
+      }
+
+      #yes-btn {
+        transition: 0.25s;
+
+        position: fixed;
+        top: 325px;
+        left: 35%;
+        background-color: pink;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 40px;
+      }
+
+      #no-btn {
+        position: fixed;
+        top: 325px;
+        left: 55%;
+        background-color: pink;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 40px;
+      }
+
+      button:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="title">Quân Có Đẹp Trai Không ?</h2>
+    </div>
+    <button id="yes-btn">Có</button>
+    <button id="no-btn">Không</button>
+
+    <script>
+      const yes = document.getElementById("yes-btn");
+      const no = document.getElementById("no-btn");
+      const title = document.getElementById("title");
+      yes.onmouseenter = function () {
+        const rect = yes.getBoundingClientRect();
+        console.log(rect);
+        let x = Math.random() * (window.innerWidth - rect.width);
+        let y = Math.random() * (window.innerHeight - rect.height);
+
+        yes.style.position = "fixed";
+        yes.style.left = `${x}px`;
+        yes.style.top = `${y}px`;
+      };
+      no.onclick = function () {
+        title.innerText = "Chính Xác";
+        yes.style.display = "none";
+        no.style.display = "none";
+
+        const again = document.createElement("button");
+
+        again.style.position = "fixed";
+        again.style.top = "325px";
+        again.style.left = "50%";
+        again.style.transform = "translateX(-50%)";
+        again.style.backgroundColor = "pink";
+        again.style.border = "none";
+        again.style.borderRadius = "20px";
+        again.style.padding = "10px 40px";
+        again.innerText = "Chọn Lại";
+        again.id = "again-btn";
+
+        document.querySelector("body").appendChild(again);
+        // Bắn từ góc trái
+        confetti({
+          particleCount: 500,
+          angle: 45,
+          spread: 130,
+          origin: { x: 0, y: 0.65 },
+        });
+        // Bắn từ góc phải
+        confetti({
+          particleCount: 500,
+          angle: 135,
+          spread: 130,
+          origin: { x: 1, y: 0.65 },
+        });
+        again.onmouseenter = function () {
+          again.style.transform = "translateX(-50%) scale(1.05)";
+        };
+        again.onmouseleave = function () {
+          again.style.transform = "translateX(-50%)";
+        };
+
+        again.onclick = function () {
+          again.remove();
+          yes.style.display = "block";
+          yes.style.top = "325px";
+          yes.style.left = "35%";
+          no.style.display = "block";
+          title.innerText = "Quân Có Đẹp Trai Không ?";
+        };
+      };
+    </script>
+  </body>
+</html>
